@@ -1,0 +1,62 @@
+    1  clear
+    2  exit
+    3  git clone https://github.com/cprakash2118/Example_reference_OCP
+    4  ll
+    5  cd Example_reference_OCP/
+    6  pwd
+    7  ll
+    8  mkdir work
+    9  cd work/
+   10  pwd
+   11  ll
+   12  if [ -f sre_team_file ]; then for x in {1..5}; do htpasswd -B -b sre_team_file user$x redhat
+   13  for x in {1..5}; if [ -f sre_team_file ]
+   14  for x in {1..5}; do if [ -f sre_team_file ]; then htpasswd -B -b sre_team_file user$x redhat; else htpasswd -c -B -b sre_team_file user$x redhat; fi; done
+   15  ll
+   16  cat sre_team_file 
+   17  for x in {6..10}; do if [ -f devops_team_file ]; then htpasswd -B -b devops_team_file user$x redhat; else htpasswd -c -B -b devops_team_file user$x redhat; fi; done
+   18  ll
+   19  cat devops_team_file 
+   20  for x in {11..30}; do if [ -f application-01_file ]; then htpasswd -B -b application-01_file user$x redhat; else htpasswd -c -B -b application-01_file user$x redhat; fi; done
+   21  ll
+   22  cat application-01_file 
+   23  for x in {31..50}; do if [ -f application-02_file ]; then htpasswd -B -b application-02_file user$x redhat; else htpasswd -c -B -b application-02_file user$x redhat; fi; done
+   24  for x in {51..70}; do if [ -f application-03_file ]; then htpasswd -B -b application-03_file user$x redhat; else htpasswd -c -B -b application-03_file user$x redhat; fi; done
+   25  ll
+   26  oc create secret generic sre-team-secret --from-file htpasswd=sre_team_file -n openshift-config 
+   27  cd 
+   28  ssh root@utility 
+   29  ll
+   30  cat kubeconfig | grep server
+   31  cat kubeadmin-password 
+   32  oc login -u kubeadmin -p WdBz8-mLKk9-yVN75-UhaiU https://api.ocp4.example.com:6443
+   33  oc create secret generic sre-team-secret --from-file htpasswd=sre_team_file -n openshift-config 
+   34  cd -
+   35  ll
+   36  oc create secret generic sre-team-secret --from-file htpasswd=sre_team_file -n openshift-config 
+   37  oc create secret generic devops-team-secret --from-file htpasswd=devops_team_file -n openshift-config 
+   38  oc create secret generic application-01-team-secret --from-file htpasswd=application-01_file -n openshift-config 
+   39  oc create secret generic application-02-team-secret --from-file htpasswd=application-02_file -n openshift-config 
+   40  oc create secret generic application-03-team-secret --from-file htpasswd=application-03_file -n openshift-config 
+   41  oc get  secret -n openshift-config | grep -secret
+   42  oc get  secret -n openshift-config | grep team
+   43  ll
+   44  oc get  oauth/cluster -o yaml > oauth.yaml 
+   45  vim oauth.yaml 
+   46  oc replace -f oauth.yaml 
+   47  oc projects | grep auth
+   48  oc get  pods -w openshift-authentication
+   49  oc get  pods -n openshift-authentication
+   50  oc get  pods -w -n openshift-authentication
+   51  history | grep htpasswd
+   52  oc login -u user1 redhat
+   53  oc login -u user1 -p redhat
+   54  for x in {1..70}; do oc login -u user$x -p redhat; done
+   55  oc get users
+   56  oc login -u kubeadmin -p WdBz8-mLKk9-yVN75-UhaiU https://api.ocp4.example.com:6443
+   57  oc get users
+   58  history 
+   59  history | grep -sort -u
+   60  history | grep -sort 
+   61  history 
+   62  history > history-01.tt
